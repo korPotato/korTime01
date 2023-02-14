@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/korTime01/static/css/main.b1803bfc.css",
-    "main.js": "/korTime01/static/js/main.20ea675c.js",
+    "main.js": "/korTime01/static/js/main.c60c3a41.js",
     "static/js/787.914562a7.chunk.js": "/korTime01/static/js/787.914562a7.chunk.js",
     "index.html": "/korTime01/index.html",
     "main.b1803bfc.css.map": "/korTime01/static/css/main.b1803bfc.css.map",
-    "main.20ea675c.js.map": "/korTime01/static/js/main.20ea675c.js.map",
+    "main.c60c3a41.js.map": "/korTime01/static/js/main.c60c3a41.js.map",
     "787.914562a7.chunk.js.map": "/korTime01/static/js/787.914562a7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b1803bfc.css",
-    "static/js/main.20ea675c.js"
+    "static/js/main.c60c3a41.js"
   ]
 }
