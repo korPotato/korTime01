@@ -5,7 +5,7 @@ import React, {
   useEffect,
 } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   Link,
@@ -48,7 +48,7 @@ function fetchData(searchYearCd) {
 export default function App() {
   return (
     <Router>
-      <AuthProvider>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
@@ -78,7 +78,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      </AuthProvider>
+      </HashRouter>
     </Router>
   );
 }
@@ -114,61 +114,61 @@ function Main() {
 
   return (
     <>
-    <div className="px-20">
+      <div className="px-20">
 
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mt-8">
-          인천광역시 부평구 보행노인 사고조회
-        </h1>
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mt-8">
+            인천광역시 부평구 보행노인 사고조회
+          </h1>
 
-        <h2 className="mt-4 text-xl">조회하실 연도를 선택하십시오</h2>
-        <div className="flex justify-center mx-6 mt-5">
-          <button
-            className="p-1 border-2 border-black mr-10 rounded-lg hover:bg-red-400"
-            onClick={() => setSearchYearCd(searchYearCd - 1)}
+          <h2 className="mt-4 text-xl">조회하실 연도를 선택하십시오</h2>
+          <div className="flex justify-center mx-6 mt-5">
+            <button
+              className="p-1 border-2 border-black mr-10 rounded-lg hover:bg-red-400"
+              onClick={() => setSearchYearCd(searchYearCd - 1)}
             >
-            &#10094; 이전년도
-          </button>
-          <span className="text-2xl font-bold">{searchYearCd}</span>
-          <button
-            className="p-1 border-2 border-black ml-10 rounded-lg hover:bg-green-400"
-            onClick={() => setSearchYearCd(searchYearCd + 1)}
+              &#10094; 이전년도
+            </button>
+            <span className="text-2xl font-bold">{searchYearCd}</span>
+            <button
+              className="p-1 border-2 border-black ml-10 rounded-lg hover:bg-green-400"
+              onClick={() => setSearchYearCd(searchYearCd + 1)}
             >
-            다음년도 &#10095;
-          </button>
+              다음년도 &#10095;
+            </button>
+          </div>
+        </div>
+
+        <div>
+          {data.totalCount > 0 ? (
+            <>
+              <p className="text-xl text-center mt-5">
+                {searchYearCd}부평구{" "}
+                <span className="text-2xl text-red-500 font-bold">
+                  총 {data.totalCount}건의 사고
+                </span>
+                가 발생했습니다
+              </p>
+
+              <h2 className="mt-4 font-bold mb-1">사고 현황</h2>
+              <p className="text-sm newss-color-sm mb-1">그래프에 마우스를 올리면 현황이 나옵니다</p>
+              <Rechart accidents={data.items.item} />
+
+              <h2 className="mt-4 font-bold">지도&로드뷰</h2>
+              <p className="text-sm newss-color-sm mb-1">지도 또는 로드뷰를 확대 또는 축소할 수 있습니다</p>
+              <KakaoMap accidents={data.items.item} />
+            </>
+          ) : (
+            <p>해당 년도 자료가 없습니다</p>
+          )}
         </div>
       </div>
-
-      <div>
-        {data.totalCount > 0 ? (
-          <>
-            <p className="text-xl text-center mt-5">
-              {searchYearCd}부평구{" "}
-              <span className="text-2xl text-red-500 font-bold">
-                총 {data.totalCount}건의 사고
-              </span>
-              가 발생했습니다
-            </p>
-
-            <h2 className="mt-4 font-bold mb-1">사고 현황</h2>
-            <p className="text-sm newss-color-sm mb-1">그래프에 마우스를 올리면 현황이 나옵니다</p>
-            <Rechart accidents={data.items.item} />
-
-            <h2 className="mt-4 font-bold">지도&로드뷰</h2>
-            <p className="text-sm newss-color-sm mb-1">지도 또는 로드뷰를 확대 또는 축소할 수 있습니다</p>
-            <KakaoMap accidents={data.items.item} />
-          </>
-        ) : (
-          <p>해당 년도 자료가 없습니다</p>
-          )}
-      </div>
-          </div>
     </>
   );
 }
 
 const AuthContext = createContext();
-function AuthProvider(props) {
+function HashRouter(props) {
   const [user, setUser] = useState(null);
   // 로그인
   function signIn(username) {
@@ -216,7 +216,7 @@ function Layout() {
         </div>
       ) : (
         <span className="flex justify-center font-bold mt-40">로그인 해주세요!!</span>
-        )}
+      )}
       <Outlet />
       {/* 경로가 바뀌면 아웃렛 컨텐츠가 바뀐다 */}
     </>
@@ -292,7 +292,7 @@ function News() {
               title="클릭시 해당 뉴스기사로 이동"
             >
               <img
-                src="img/kk.jpg"
+                src="https://img.etoday.co.kr/pto_db/2022/06/600/20220617161410_1765632_1199_800.jpg"
                 alt="도로에서 위험하게 손수레를 끌고있는 노인(사징작가 이화진)"
                 width="100%"
               />
@@ -341,7 +341,7 @@ function News() {
               title="클릭시 해당 뉴스기사로 이동"
             >
               <img
-                src="img/chat.jpg"
+                src="https://img.etoday.co.kr/pto_db/2022/06/600/20220616170826_1765230_1200_989.jpg"
                 alt="OECD회원국 평균 65세 이상 노인인구 10만 명당 보행 중 사망자수"
                 width="100%"
               />
@@ -373,7 +373,7 @@ function News() {
               title="클릭시 해당 뉴스기사로 이동"
             >
               <img
-                src="img/kk2.jpg"
+                src="https://img.etoday.co.kr/pto_db/2022/06/600/20220616170825_1765229_1199_899.jpg"
                 alt="노인들이 신호를 무시한 채 횡단보도를 벗어나 보행하고 있다"
                 width="100%"
               />
@@ -511,7 +511,7 @@ function Rechart({ accidents }) {
 function KakaoMap({ accidents }) {
   const [toggle, setToggle] = useState("map");
   return (
-    <div style={{ width: "100%", height: "500px", position: "relative", marginBottom:"3rem" }}>
+    <div style={{ width: "100%", height: "500px", position: "relative", marginBottom: "3rem" }}>
       <Map // 로드뷰를 표시할 Container
         center={{ lat: accidents[0].la_crd, lng: accidents[0].lo_crd }}
         style={{
@@ -525,9 +525,9 @@ function KakaoMap({ accidents }) {
           <MapMarker
             key={accident.spot_nm}
             // 마커를 표시할 위치
-            position={{ lat: accident.la_crd, lng: accident.lo_crd }} 
+            position={{ lat: accident.la_crd, lng: accident.lo_crd }}
             // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            title={accident.spot_nm} 
+            title={accident.spot_nm}
           />
         ))}
         {/* 로드뷰 보기 버튼 */}
@@ -547,21 +547,21 @@ function KakaoMap({ accidents }) {
           />
         )}
       </Map>
-          {/* 실직적 로드뷰 */}
+      {/* 실직적 로드뷰 */}
       {accidents.map((accident) => (
         <Roadview // 로드뷰를 표시할 Container
-        key={accident.spot_nm}
-        position={{
-          ...{ lat: accident.la_crd, lng: accident.lo_crd },
-          radius: 50,
-        }}
-        style={{
-          display: toggle === "roadview" ? "inline-block" : "none",
-          margin: "10px",
-          marginLeft: "3rem",
-          width: "45%",
-          height: "100%",
-        }}
+          key={accident.spot_nm}
+          position={{
+            ...{ lat: accident.la_crd, lng: accident.lo_crd },
+            radius: 50,
+          }}
+          style={{
+            display: toggle === "roadview" ? "inline-block" : "none",
+            margin: "10px",
+            marginLeft: "3rem",
+            width: "45%",
+            height: "100%",
+          }}
         >
           {/* // 지도 보기 버튼 */}
           <RoadviewMarker
