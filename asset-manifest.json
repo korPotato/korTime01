@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/korTime01/static/css/main.b1803bfc.css",
+    "main.js": "/korTime01/static/js/main.60a5b31a.js",
+    "static/js/787.914562a7.chunk.js": "/korTime01/static/js/787.914562a7.chunk.js",
+    "index.html": "/korTime01/index.html",
+    "main.b1803bfc.css.map": "/korTime01/static/css/main.b1803bfc.css.map",
+    "main.60a5b31a.js.map": "/korTime01/static/js/main.60a5b31a.js.map",
+    "787.914562a7.chunk.js.map": "/korTime01/static/js/787.914562a7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1803bfc.css",
+    "static/js/main.60a5b31a.js"
+  ]
+}
